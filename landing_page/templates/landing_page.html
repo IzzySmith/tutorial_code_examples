@@ -2,17 +2,17 @@
 <html lang="en">
   <head>
     <title>Landing Page</title>
-
+     <!--Surfly's Code Snippet-->
      <script type="text/javascript">(function(){window['_surfly_settings']=window['_surfly_settings']||{
         widgetkey:"dd402bb4940b4cf3a855aaa371d11419",
         apiserver:"https://surfly.com/v2/",
-        docked_only: true,
+        // the agent can take control and we remove the banner displaying the Queue ID
         agent_can_take_control: true,
 	block_until_agent_joins: false,
-	hide_until_agent_joins: true,
         };var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src="//surfly.com/static/js/widget.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n); })();
     </script>
 
+    <!--Style of the button-->
     <style>
 	.button {
 	    background-color: rgba(101,172,30,0.6);
@@ -43,6 +43,7 @@
         <button class="button" id="id_button">Waiting for ID...</button>
 
 	<script type="text/javascript">
+ 	// using the REST API to get information about the session
 	var request = new XMLHttpRequest();
 
 	request.open('GET', 'https://api.surfly.com/v2/sessions/?api_key=33c092b9d4d6425e817f5140447e43da&active_session=true');
@@ -51,9 +52,10 @@
 	  if (this.readyState === 4) {
 	    if(window.__surfly){
 		    var body = this.responseText; 
+		    // we extract the queue_id from the string we get from the request
 		    var index = body.indexOf("queue_id");
 		    var id = body.substring(index+10, body.length-2);
-
+		    // we display this id on the button
 		    document.getElementById("id_button").innerHTML=id;
 	    }
 	  }
