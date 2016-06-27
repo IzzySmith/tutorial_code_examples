@@ -1,0 +1,9 @@
+*.md~
+*.html~
+*.py~
+__pycache__/
+bin/
+build/
+dist/
+venv/
+
