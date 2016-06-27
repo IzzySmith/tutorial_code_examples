@@ -1,0 +1,2 @@
+web: gunicorn sessionid:app --log-file -
+
