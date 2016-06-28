@@ -69,11 +69,14 @@
    <div class="jumbotron">
    <h1>Join page</h1>
    </div>
+
    <div class="well">
    <p> You can use Surfly's co-browsing functionality with your own application.</p>
    </div>
    <button class="button" id="id_button" onclick="exitSession()">Exit Surfly session</button> </a>
+
    <script>
+   // get session ID
   	var request = new XMLHttpRequest();
   	request.open('GET', 'https://api.surfly.com/v2/sessions/?	api_key=33c092b9d4d6425e817f5140447e43da&active_session=true');
   	request.onreadystatechange = function () {
@@ -91,6 +94,7 @@
    </script>
 
    <script type="text/javascript">
+    // end session
     function exitSession(){
 	var request_end = new XMLHttpRequest();
 	request_end.open('DELETE', 'https://api.surfly.com/v2/sessions/'+document.getElementById("session_id").innerHTML+'/?api_key=33c092b9d4d6425e817f5140447e43da');
