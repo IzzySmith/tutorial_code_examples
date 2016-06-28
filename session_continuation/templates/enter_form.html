@@ -10,7 +10,7 @@
     </script>
   </head>
   <body>
-    <form action = "/save_form" method = "POST">
+    <form>
       <p>Enter First Name</p>
       <p><input type = "text" id="user_name"/></p>
       <p>Enter Surname</p>
@@ -25,11 +25,8 @@
     <script type="text/javascript">
        var get_name = document.getElementbyId("user_name");
        document.cookie = 'userName:user_name';
-       function alertCookie() {
-          alert(document.cookie);
-       }
+       // save the cookies from the page
       </script>
-      <button onclick="alertCookie()">Show cookies</button>
   </body>
 </html>
 
