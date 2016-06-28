@@ -10,23 +10,29 @@
     </script>
   </head>
   <body>
-    <form>
+    <form id="user_name">
+      /* the id is used to access the cookies */
       <p>Enter First Name</p>
-      <p><input type = "text" id="user_name"/></p>
+      <p><input type = "text" name="user_name"/></p>
       <p>Enter Surname</p>
       <p><input type = "text" name = "user_surname"/></p>
       <p>Enter Card Number </p>
       <p><input type="text" name = "card" surfly_private/></p>
       <p>Enter your address</p>
       <p><input type="text" name = "address" surfly_private/></p>
-      <p><input type = 'submit' value = 'save'/></p>
+      <p><input type="button" value='submit' onclick="saveForm()"/></p>
     </form>
 
     <script type="text/javascript">
-       var get_name = document.getElementbyId("user_name");
+       function saveForm() {
+          document.getElementById("user_name").submit();
+       }
+       var get_name = document.getElementById("user_name");
+       // we get the form and save it as a variable
+       // this variable is then saved as a cookie
        document.cookie = 'userName:user_name';
-       // save the cookies from the page
       </script>
+     <p> <a href="{{ url_for('save_form') }}"> Continue </a> </p>
   </body>
 </html>
 
