@@ -12,7 +12,7 @@
   <body>
     <form action = "/save_form" method = "POST">
       <p>Enter First Name</p>
-      <p><input type = "text" name = "user_name"/></p>
+      <p><input type = "text" id="user_name"/></p>
       <p>Enter Surname</p>
       <p><input type = "text" name = "user_surname"/></p>
       <p>Enter Card Number </p>
@@ -21,6 +21,15 @@
       <p><input type="text" name = "address" surfly_private/></p>
       <p><input type = 'submit' value = 'save'/></p>
     </form>
+
+    <script type="text/javascript">
+       var get_name = document.getElementbyId("user_name");
+       document.cookie = 'userName:user_name';
+       function alertCookie() {
+          alert(document.cookie);
+       }
+      </script>
+      <button onclick="alertCookie()">Show cookies</button>
   </body>
 </html>
 
