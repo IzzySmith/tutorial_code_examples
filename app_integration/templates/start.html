@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Landing Page</title>
+
+     <script type="text/javascript">(function(){window['_surfly_settings']=window['_surfly_settings']||{
+        widgetkey:"dd402bb4940b4cf3a855aaa371d11419",
+        apiserver:"https://surfly.com/v2/",
+	ui_off: true,
+	hidden:true,
+        };var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src="//surfly.com/static/js/widget.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n); })();
+    </script>
+
+    <style>
+	.button {
+	    background-color: #f0ad4e;
+	    border: none;
+	    color: black;
+	    padding: 15px 32px;
+	    text-align: center;
+	    text-decoration: none;
+	    display: inline-block;
+	    font-size: 24px;
+	    cursor: pointer;
+            width: 35%;
+	    height: 70px;
+            font-weight: bold;
+	    margin-left: 550px;
+            margin-top: 200px;
+	}
+
+	body {
+   	 background-image: url("https://images3.alphacoders.com/207/207637.jpg");
+         background-color: white;
+	}
+       
+        h1 {
+	 text-align: center;
+         font-size: 30px;
+         color: white;
+	}
+    
+
+    </style>
+
+  </head>
+
+  <body>
+        <div>   
+        <h1> This is a basic start page with your own Surfly button </h1>
+        </div>
+        <a href="#surflystart"> <button class="button" id="id_button">Start a Surfly session</button> </a>
+	<script>
+	if(window.__surfly){
+		window.location.href='/join';
+	}
+	</script>
+   </body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Example Website for Surfly Chat integration</title>
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+
+    <script type="text/javascript">(function(){window['_surfly_settings']=window['_surfly_settings']||{
+        widgetkey:"dd402bb4940b4cf3a855aaa371d11419",
+        apiserver:"https://surfly.com/v2/",
+	ui_off: true,
+	hidden: true,
+	docked_only: true,
+        };var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src="//surfly.com/static/js/widget.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n); })();</script>
+    </script>
+
+    <style>
+    .button {
+	    background-color: green;
+	    border: none;
+	    color: black;
+	    text-align: center;
+	    text-decoration: none;
+	    display: inline-block;
+	    font-size: 16px;
+	    margin-top: 500px;
+	    cursor: pointer
+	    font-weight: bold;
+    }
+    </style>
+
+    <!-- Bootstrap -->
+       <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='theme.css') }}">
+       <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap_changed.min.css') }}">
+       <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap-theme.min.css') }}">
+
+    <!-- Adding Zopim Live Chat -->
+    <script type="text/javascript">
+    window.$zopim||(function(d,s){var z=$zopim=function(c){z._.push(c)},$=z.s=
+    d.createElement(s),e=d.getElementsByTagName(s)[0];z.set=function(o){z.set.
+    _.push(o)};z._=[];z.set._=[];$.async=!0;$.setAttribute("charset","utf-8");
+    $.src="//v2.zopim.com/?40l495kTPWFGA7JFrUDzK03KARqCPsNL";z.t=+new Date;$.
+    type="text/javascript";e.parentNode.insertBefore($,e)})(document,"script");
+    </script>
+    <!--End of Zopim Live Chat Script-->
+
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+       <div class="container">
+          <div class="navbar-header">
+             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+             </button>
+             <a class="navbar-brand" href="{{ url_for('index') }}">Example Website</a>
+           </div>
+        <div id="navbar" class="navbar-collapse collapse">
+           <ul class="nav navbar-nav">
+           </ul>
+        </div>
+     </div>
+   </nav>
+   <div class"container theme-showcase" role="main">
+   <div class="jumbotron">
+   <h1>Join page</h1>
+   </div>
+   <div class="well">
+   <p> You can use Surfly's co-browsing functionality with your own application.</p>
+   </div>
+   <button class="button" id="id_button" onclick="exitSession()">Exit Surfly session</button> </a>
+   <script>
+  	var request = new XMLHttpRequest();
+  	request.open('GET', 'https://api.surfly.com/v2/sessions/?	api_key=33c092b9d4d6425e817f5140447e43da&active_session=true');
+  	request.onreadystatechange = function () {
+    	if (this.readyState === 4) {
+      		if(window.__surfly){
+        		var body = this.responseText;
+        		var index = body.indexOf("session_id");
+        		var index_end = body.indexOf("agent_id");
+        		var id = body.substring(index+13, index_end-3);
+			document.getElementById("session_id").innerHTML=id;
+     	 	}
+    	}
+  	};
+  	request.send();	
+   </script>
+
+   <script type="text/javascript">
+    function exitSession(){
+	var request_end = new XMLHttpRequest();
+	request_end.open('DELETE', 'https://api.surfly.com/v2/sessions/'+document.getElementById("session_id").innerHTML+'/?api_key=33c092b9d4d6425e817f5140447e43da');
+	request_end.onreadystatechange = function () {
+  		if (this.readyState === 4) {
+			var body = this.responseText;
+			var index = body.indexOf("response");
+			var success = body.substring(index+11, body.length-2);
+			if(success==="Session has been ended successfully"){				
+				window.location.href = '/start';
+				Surfly.endSession('https://serene-sea-89776.herokuapp.com/start');
+			}
+ 		}
+	};
+	request_end.send();
+  }
+  </script>
+
+  <div id="session_id" style="display:none"></div>
+  </body>
+</html>
